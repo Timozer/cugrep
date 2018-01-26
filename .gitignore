@@ -1,7 +1,7 @@
 *~
 fonts
 .DS_Store
-ret.tex
+rep.tex
 *.aux
 *.log
 *.out

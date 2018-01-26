@@ -29,6 +29,20 @@
     fancyhdr,
     openany,
     amstex]{ctexbook}
+
+
+%\setlength{param}{len}
+%\addtolength{param}{len}
+%---------------------- 字号参照 ----------------------
+% \small 小五
+% \normal 五号
+% \large 小四
+% \Large 小三
+% \LARGE 小二
+% \huge  二
+% \Huge  一
+%------------------------------------------------------
+
 %\ctexset{
     %chapter={
         %format = \raggedright,
@@ -96,7 +110,7 @@
         \thispagestyle{empty}
         \begin{center}\leavevmode
                 \vspace*{\baselineskip}
-                {\par \LARGE 中国地质大学（武汉）研究生课程论文 \par}
+                {\par \Large 中国地质大学（武汉）研究生课程论文 \par}
                 \vspace*{2\baselineskip}
                 {\par \Huge \@title \par} %
                 \vfill
@@ -121,32 +135,35 @@
         \clearpage
         \thispagestyle{empty}
         \begin{center}
-            \Large{评语}
+            {\LARGE 评语}
         \end{center}
         \vskip 1.5ex
         % 评语表
         \renewcommand\arraystretch{1.25} % 稍微增大一点表格环境中的行距
-        \begin{tabular}{|p{\textwidth}|}
-            \hline
-            \hbox{对课程论文的评语:} \\
-            \tabularnewline[0.65\textheight]
-            \hline
-        \end{tabular}
-        \\
-        \begin{tabular}{|p{0.482\textwidth} |p{0.482\textwidth}|}
-            \hline
-            \makebox[5em][s]{平\hfill 时\hfill 成\hfill 绩:} & \makebox[7em][s]{课\hfill 程\hfill 论\hfill 文\hfill 成\hfill 绩:} \\
-            \hline
-            \makebox[5em][s]{总\hfill 成\hfill 绩:} & \makebox[7em][s]{评\hfill 阅\hfill 人\hfill 签\hfill 名:} \\
-            \hline
-        \end{tabular}
+        {\Large
+            \begin{tabular}{|p{\textwidth}|}
+                \hline
+                对课程论文的评语: \\
+                \tabularnewline[0.65\textheight]
+                \hline
+            \end{tabular}
+            \\
+            \begin{tabular}{|p{0.482\textwidth} |p{0.482\textwidth}|}
+                \hline
+                \makebox[5em][s]{平\hfill 时\hfill 成\hfill 绩:} & \makebox[7em][s]{课\hfill 程\hfill 论\hfill 文\hfill 成\hfill 绩:} \\
+                \hline
+                \makebox[5em][s]{总\hfill 成\hfill 绩:} & \makebox[7em][s]{评\hfill 阅\hfill 人\hfill 签\hfill 名:} \\
+                \hline
+            \end{tabular}
+        }
         \begin{center}
             {\small 
-            \begin{tabular}{ll}
-                \makebox[1em][s]{注:} & 1. 无评阅人签名成绩无效;\\
-                \makebox[1em][s]{} & 2. 必须用钢笔或圆珠笔批阅，用铅笔阅卷无效; \\
-                \makebox[1em][s]{} & 3. 如有平时成绩,必须在上面评分表中标出,并计算入总成绩. \\
-            \end{tabular}}
+                \begin{tabular}{ll}
+                    \makebox[1em][s]{注:} & 1. 无评阅人签名成绩无效;\\
+                    \makebox[1em][s]{} & 2. 必须用钢笔或圆珠笔批阅，用铅笔阅卷无效; \\
+                    \makebox[1em][s]{} & 3. 如有平时成绩,必须在上面评分表中标出,并计算入总成绩. \\
+                \end{tabular}
+            }
         \end{center}
         \renewcommand\arraystretch{1} % 将行距还原
 
