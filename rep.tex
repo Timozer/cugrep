@@ -1,0 +1,266 @@
+\documentclass{cugrep}
+
+\usepackage{enumitem}
+\title{KNN识别MNIST数据集\\之多种距离度量方法的差异}
+\classname{数据挖掘\\与机器学习}
+\college{计算机学院}
+\major{计算机科学与技术}
+\sno{1201711347}
+\teacher{蒋良孝}
+\class{硕士}
+\author{王震宇}
+\begin{document}
+
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+\thispagestyle{plain}
+\cleardoublepage
+\pagenumbering{arabic}
+
+\section*{摘要}
+KNN 学习理论成熟，是最简单的机器学习算法之一。在 KNN 算法中，最重要的一步就是距离度量，不同的距离度量方式会对结果造成不同影响，
+本文尝试使用多种不同的距离度量方法来用 KNN 算法对 MNIST 数据集进行识别。
+\section{KNN学习算法}
+ KNN学习（K-Nearest Neighbor algorithm，$k$ 最近邻方法）是一种统计分类器，属于惰性（Lazy）
+ 学习，对包容型数据的特征变量筛选尤其有效。最早相关论文为美国 Stanford University 的 
+ Cover TM 和 Hart PE 发表于1967年的 Nearest neighbor pattern classification。
+ \subsection{基本原理}
+ KNN基本思想：输入没有标签即未经分类的新数据，首先提取新数据的特征并与测试集中的每一个
+ 数据特征进行比较；然后从样本中提取 $k$ 个最近邻（最相似）数据特征的分类标签，统计这 $k$ 个
+ 最近邻数据中出现次数最多的分类，将其作为新数据的类别。
+ \subsubsection{分类}
+KNN按照一定规则将相似的数据样本进行归类，类似于现实生活中的“物以类聚，人以群分”。
+
+在 KNN 学习中，首先计算待分类数据特征与训练数据特征之间的距离并排序，取出距离最近的 $k$ 个训练数据
+特征；然后，根据这 $k$ 个相近训练数据特征所属的类别来判定新样本的类别；如果它们都属于同一类，
+那么新样本也属于这个类；否则，对每个候选类别进行评分，按照某种规则确定新样本的类别。
+
+一般采用投票规则，即少数服从多数，期望的 $k$ 值是一个技术。精确的投票方法是计算每一个测试样本与 $k$ 个
+样本之间的距离。
+\subsubsection{回归}
+得到待处理数据的 $k$ 个最相似训练数据后，求取这些训练数据属性的平均值，该平均值作为待处理数据
+的属性值，这一求取待处理数据属性的过程称为 KNN 学习中的回归。
+
+进一步地，根据每一个罪行四训练数据和待处理数据见得实际距离，赋予每一个最相似训练数据不同的权值，然后
+再进行加权平均，这样得到的回归值更为有效。
+
+\subsection{算法描述}
+KNN算法的伪代码如下：
+\begin{algorithm}
+    \caption{K-Nearest neighbor algorithm}
+    \KwIn{$X_t$, $X$, $Y$, $k$, $X_t$\ is\ test\ data, $X$\ is\ training\ data, $Y$\ is\ the\ labels\ of\ $X$}
+  \KwOut{$Y_t$, the\ lables\ of\ test\ data}
+  \For{$X_{t}$中的每个测试样例 $X_{t}(i)$}
+  {
+  	计算$X_{t}(i)$与训练集中每个训练样本$X(j)\in X$之间的距离 $D$\;
+	将$D$中的距离按照一定的顺序进行排序\;
+	选择离$X_{t}(i)$最近的$k$个训练样本的类别标签\;
+	按照一定的规则统计$k$个类别标签里比重最大的类别\;
+	将类别赋予$Y_{t}(i)$\;
+  }
+  return $Y_{t}$\;
+\end{algorithm}
+
+\section{距离度量方法}
+
+在机器学习和数据挖掘中，我们经常需要知道个体间差异的大小，进而评价个体的相似性和类别。根据数据特性的不同，可以采用不同的度量方法。
+
+一般而言，定义一个距离函数 $d(x,y)$, 需要满足下面几个准则：
+\begin{enumerate}[itemindent=1em]
+	\item $d(x,x) = 0$                   \slash\slash 到自己的距离为0
+	\item $d(x,y) \geqlsant 0$                  // 距离非负
+	\item $d(x,y) = d(y,x)$              // 对称性: 如果 A 到 B 距离是 a，那么 B 到 A 的距离也应该是 a
+	\item $d(x,k)+ d(k,y) \geqlsant d(x,y)$     // 三角形法则: (两边之和大于第三边)
+\end{enumerate}
+
+在机器学习和数据挖掘中，常见的距离度量公式一般有11种之多，如：
+\begin{itemize}[itemindent=1em]
+	\item 闵可夫斯基距离
+	\item 欧几里得距离
+	\item 曼哈顿距离
+	\item 切比雪夫距离
+	\item 马氏距离
+	\item 余弦相似度
+	\item 皮尔逊相关系数
+	\item 汉明距离
+	\item 杰卡德相似系数
+	\item 编辑距离
+	\item DTW 距离
+	\item KL 散度
+\end{itemize}
+
+闵可夫斯基距离（Minkowski distance）是衡量数值点之间距离的一种非常常见的方法，它的定义如下：
+\begin{equation}
+	d = \left(\sum_{i = 1}^{n} |x_{i} - y_{i}|^{p}\right)^{\frac 1p}
+\end{equation}
+
+在该距离中，当$p=1$时，就是后面要介绍的曼哈顿距离，$p=2$时，该距离就是欧几里得距离，$p\to\infty$时，该距离可转化为切比雪夫距离。
+
+马氏距离实际上是利用 Cholesky transformation 来消除不同维度之间的相关性和尺度不同的性质。
+
+汉明距离（Hamming distance）是指，两个等长字符串$s_{1}$与$s_{2}$之间的汉明距离定义为将其中一个变为另外一个所需要作的最小替换次数。该距离用来处理离散的数值。
+
+接下来介绍几种本文要使用到的距离度量方法。
+
+\subsection{曼哈顿距离}
+出租车几何或曼哈顿距离（Manhattan Distance）是由十九世纪的赫尔曼·闵可夫斯基所创词汇 ，是种使用在几何度量空间的几何学用语，用以标明两个点在标准坐标系上的绝对轴距总和。
+
+可以定义曼哈顿距离的正式意义为L1-距离或城市区块距离，也就是在欧几里德空间的固定直角坐标系上两点所形成的线段对轴产生的投影的距离总和。
+
+例如在平面上，坐标$(x_1, y_1)$的$i$点与坐标$(x_2, y_2)$的$j$点的曼哈顿距离为：
+$d(i,j)=|X_1-X_2|+|Y_1-Y_2|$。
+
+要注意的是，曼哈顿距离依赖坐标系统的转度，而非系统在坐标轴上的平移或映射。
+
+曼哈顿距离计算公式如下：
+\begin{equation}
+	d = \sum_{i = 0}^{n} | x_{i} - y_{i}|
+\end{equation}
+\subsection{欧式距离}
+欧几里得度量（euclidean metric）（也称欧氏距离）：以古希腊数学家欧几里得命名的距离；在二维和三维空间中的欧氏距离就是两点之间的实际距离。也就是我们直观的两点之间直线最短的直线距离。
+
+欧几里得距离计算公式如下：
+\begin{equation}
+	d = \sqrt{\sum_{i = 0}^{n} (x_{i} - y_{i}) ^{2}}
+\end{equation}
+
+\subsection{切比雪夫距离}
+切比雪夫距离（Chebyshev distance）或者（Supremum distance）：在数学中，切比雪夫距离或是L∞度量是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。以数学的观点来看，切比雪夫距离是由一致范数（英语：uniform norm）（或称为上确界范数）所衍生的度量，也是超凸度量。
+
+切比雪夫距离计算公式如下：
+\begin{equation}
+	d = \underset{i}{max}(|X(i) - Y(i)|) = \lim_{p\to\infty}\left(\sum_{i=1}^{n}|X(i) - Y(i)|^{p}\right)^{\frac{1}{p}}
+\end{equation}
+\subsection{余弦相似度}
+余弦相似度（Cosine Similarity）：余弦相似度，又称为余弦相似性，是通过计算两个向量的夹角余弦值来评估他们的相似度。余弦相似度将向量根据坐标值，绘制到向量空间中，如最常见的二维空间。
+
+余弦相似度计算公式如下：
+\begin{equation}
+	d = \frac{
+				\sqrt{\sum X\cdot Y}
+			 }{
+			 	\sqrt{\sum X^{2}}\cdot \sqrt{\sum Y^{2}}
+			 }
+\end{equation}
+
+
+\section{实验}
+\subsection{实验数据}
+本实验所采用的数据集是MNIST手写数字数据集。
+
+MNIST 数据集可在 http://yann.lecun.com/exdb/mnist/ 获取, 它包含了四个部分:
+
+\begin{itemize}[itemindent=1em]
+	\item Training set images: train-images-idx3-ubyte.gz (9.9 MB, 解压后 47 MB, 包含 60,000 个样本)
+	\item Training set labels: train-labels-idx1-ubyte.gz (29 KB, 解压后 60 KB, 包含 60,000 个标签)
+	\item Test set images: t10k-images-idx3-ubyte.gz (1.6 MB, 解压后 7.8 MB, 包含 10,000 个样本)
+	\item Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 个标签)
+\end{itemize}
+
+MNIST 数据集来自美国国家标准与技术研究所，National Institute of Standards and Technology (NIST)。训练集 (training set) 由来自 250 个不同人手写的数字构成，其中 50\% 是高中学生, 50\% 来自人口普查局 (the Census Bureau) 的工作人员。测试集(test set) 也是同样比例的手写数字数据。
+
+MNIST 原始数据集中的样本数据值是处于$0-255$之间的，在本实验中将其除以$255$使其处于$0-1$之间。其实还可以将其$01$化，即，如果值大于0，则不管是多少，都使其等于1，这样就可以使用前面提到的汉明距离了。
+
+为了可视化测试集中的数据，本文采用 PCA 算法对测试集进行了降维处理，将其所有数据投影到三维空间中，如图\ref{fig:testImgs}所示。
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=\textwidth]{./images/testImgs.eps}
+	\caption{测试数据集三维图}
+	\label{fig:testImgs}
+\end{figure}
+
+\subsection{距离度量方法}
+本实验按照 KNN 算法的流程，对测试集中的每个测试样本进行 KNN 计算，求得测试集中每个样本的类别，然后
+将其与真实的测试样本的类别标签进行对比，计算出准确率。
+
+在该实验中，我们使用了前面介绍的曼哈顿距离、欧几里得距离、切比雪夫距离和余弦相似度等方法来进行 KNN 中的距离度量。
+
+\subsection{$k$值的选取}
+不同的$k$值对KNN算法的结果会产生重大影响。
+
+如果$k$值过小，相当于只用与输入实例较近（相似）的样本会对预测结果产生影响，这样带来的不足之处是预测结
+果会对近邻的样本点非常敏感，如果邻近的样本点恰好是噪声点，那么预测结果就会出错。换句话说，$k$值的减小
+意味着模型变得复杂，容易发生过拟合 相反，如果$k$值过大，那么预测结果取决于输入实例较大邻域内的样本点，
+这样带来的不足之处是预测结果可能受到较远（不太相似）的样本点的干扰，从而使得预测结果不准确。换句话说，
+K值增大意味着模型变得简单，极端情况下，$k = n$，那么无论输入实例是什么，都将简单地预测它属于训练实例中出现
+最多的类，这时，模型过于简单，完全忽略了训练集中有用的信息，所以该方案是不可取的。 通常，$k$值一般取一个较
+小的数值，然后使用交叉验证法来选取最优的$k$值。
+
+本实验中，$k$ 值选取了5和100这两个数。
+
+\section{结果分析}
+
+\subsection{准确率对比}
+
+由于在做本实验时使用的计算机是笔记本电脑，数据量稍微有点大，实验运行的次数多，在长达12个小时
+的计算后，得到了实验的结果，经过计算准确率，得到表\ref{tb:err}的结果。
+%三线表
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{ccccc}
+		\toprule
+		k  & Manha &  Eucli  & Cheby  & Cosine \\
+		\midrule
+		5   & 0.9618 & 0.9688 & 0.8364 & \bf{0.9730} \\
+		100 & 0.9329 & 0.9440 & 0.7630 & \bf{0.9543} \\
+		\bottomrule
+	\end{tabular}
+	\caption{实验结果准确的对比}
+	\label{tb:err}
+\end{table}
+
+从表格中可以看出，使用余弦相似度来识别手写数字得到的结果最好，其次就是欧几里得距离度量方法，曼哈顿距离次之，切比雪夫距离效果最差。
+
+而$k$在取值不同时，得到的结果也不一样，$k = 5$的时候，得到的精度明显比$k=100$时好，在切比雪夫距离实验中更是多了七点三个百分点，
+当$k=5$时，曼哈顿距离和欧几里得距离得到的精度竟然比$k=100$时的余弦相似度的精度还要高。
+
+\subsection{三维数据图对比}
+本实验中使用了$k=5$的结果来画测试数据集的三维图，如图\ref{fig:testImgsManha5}、
+\ref{fig:testImgsEucli5}、\ref{fig:testImgsCheby5}、\ref{fig:testImgsCos5}。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./images/testImgsManha5.eps}
+	\caption{$k = 5$, 曼哈顿距离度量结果}
+	\label{fig:testImgsManha5}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./images/testImgsEucli5.eps}
+	\caption{$k = 5$, 欧式距离度量结果}
+	\label{fig:testImgsEucli5}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./images/testImgsCheby5.eps}
+	\caption{$k = 5$, 切比雪夫距离度量结果}
+	\label{fig:testImgsCheby5}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./images/testImgsCos5.eps}
+	\caption{$k = 5$, 余弦相似性}
+	\label{fig:testImgsCos5}
+\end{figure}
+
+\subsection{错误识别图}
+由前得到 $k=5$，采用余弦相似度距离度量公式得到的结果最好，这里我们通过画出识别错误的数字图来
+看看结果，如图\ref{fig:errImgs}。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./images/errImgs.eps}
+	\caption{错误识别图}
+	\label{fig:errImgs}
+\end{figure}
+
+图中左侧的数字是正确的数字，右侧的是 KNN 分类后的数字。一位数字表示KNN 将其识别为该数字，而其正确数字是0。
+
+从图中可以看出，有一些分错的结果，如果是人工分类的话，也会出错的。我认为人工智能应当是建立在人的智能之上，现在的科学技术无法做到超越人类的智能，
+所以这个算法无法分辨出人类同样也无法分辨出的数字不为过，它做的其实已经挺好了。
+\section{总结}
+在本课程中学到了很多有关数据挖掘方面的东西，比如说分类聚类等，无监督有监督学习等。其中一直想尝试着使用不同的距离度量方法来看看对 KNN 算法分类结果准确度的影响。所以在课程设计中做了这方面的实验。
+
+本文的实验中使用的数据比较多，在仔细分析后，我觉得如果根据训练样本集中的各个数字的比重来设置一个权值，这样或许效果更好。
+\end{document}

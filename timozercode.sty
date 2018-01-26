@@ -1,0 +1,75 @@
+% !TEX TS-program xelatex
+% !TEX encoding = UTF-8 Unicode
+% -*- coding: UTF-8; -*-
+% vim: set fenc=utf-8
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  FileName: timozercode.sty
+%%  Author:   Timozer
+%%  E-mail:   zhenyuwang94@gmail.com
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{timozercode}[2018/01/21 v0.3 Source Code Environment]
+\RequirePackage{color}
+\RequirePackage{xifthen}
+
+%-------------- 伪代码环境 -----------------
+\makeatletter  
+\newif\if@restonecol  
+\makeatother  
+\let\algorithm\relax  
+\let\endalgorithm\relax 
+
+\RequirePackage[linesnumbered,ruled,vlined]{algorithm2e}%[ruled,vlined]{
+\RequirePackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
+%-------------------------------------------
+
+\definecolor{gray}{rgb}{0.75, 0.75, 0.75}
+%--------------- For Source Code -----------
+\RequirePackage{listings}
+\lstdefinestyle{tcodestyle}{%
+    numbers=left,                   % print line number on the left
+    numberstyle=\small,             % the line number style
+    basicstyle=\small\ttfamily,     % print whole listing small
+    tabsize=4,                      % tab size is 4
+        % showtabs=true,
+        % showspaces=true,
+    %float,
+    extendedchars=false,
+    frame=single, 
+    framerule=0pt,
+    backgroundcolor=\color{gray},
+    breaklines=true,
+    %framexleftmargin=6mm,
+    texcl=true,
+    mathescape=true,
+    showstringspaces=true           % 
+}
+\lstnewenvironment{tcode}[3]{%
+    \lstset{%
+        language=#1, 
+        caption=#2,                     % the caption
+        label=#3,
+        style=tcodestyle
+    }
+}{%
+}
+\newcommand{\tcodeinput}[3]{%
+    \lstset{%
+        language=#1, 
+        caption={#2},                     % the caption
+        label=#3,
+        style=tcodestyle 
+    }
+    \lstinputlisting{#2}
+}
+\newcommand{\tcodeinline}[2]{%
+    \lstinline[language=#1, basicstyle=\small\ttfamily]{#2}
+}
+\renewcommand\lstlistingname{代码}
+%-------------------------------------------
+\endinput
