@@ -101,7 +101,7 @@
                 {\par \Huge \@title \par} %
                 \vfill
                 {\Large
-                    \begin{tabular}{cp{2.5cm}c}
+                    \begin{tabular}{clc}
                         %\hbox to 6em {课\hfil 程\hfil 名\hfil 称:} & \hbox to 15em {{}\the\classname \hfil{}} & \\
                         \makebox[5em][s]{课\hfill 程\hfill 名\hfill 称:} & \makebox[8em][s]{\tabincell{l}{\the\classname} \hfill{}} & \\
                         \makebox[5em][s]{教\hfill 师\hfill 姓\hfill 名:} & \makebox[8em][s]{\the\teacher \hfill{}} & \\

@@ -2,3 +2,8 @@
 fonts
 .DS_Store
 ret.tex
+*.aux
+*.log
+*.out
+*.pdf
+*.toc
