@@ -1,15 +1,15 @@
 TEX = xelatex
+OPEN = open
 
-#target: .pdf
+OBJECTS = demo.pdf
+target: $(OBJECTS)
 
-#.pdf: *.tex | *.sty *.cls
-	#$(TEX) $<
-
-target: demo.pdf
-
-demo.pdf: demo.tex | *.sty *.cls
+demo.pdf: *.tex *.sty *.cls
 	$(TEX) $<
+	$(OPEN) $@
 
-.PHONY: clean
+
+.PHONY: clean 
+
 clean:
-	rm *~ *.aux *.log *.out *.toc *.pdf
+	rm -f *~ *.aux *.log *.out *.toc *.pdf

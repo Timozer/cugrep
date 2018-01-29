@@ -43,40 +43,68 @@
 % \Huge  一
 %------------------------------------------------------
 
-%\ctexset{
-    %chapter={
-        %format = \raggedright,
+\ctexset{%
+    space=auto,
+    autoindent=true,
+    chapter={%
+        afterindent=true,
+        pagestyle=plain,
+        aftername={\quad},
+        %format={\centering\titlefont\heiti\xiaoer[1]}
         %number = \arabic{chapter},
         %numberformat=\it\zihao{0},
         %nameformat=\bf\zihao{2},
-        %aftername={\quad},
         %titleformat=\it\zihao{2},
-        %pagestyle = empty,
-    %},
-    %section={
+    },
+    section={%
+        afterindent=true,
+        format={\flushleft\bf\sanhao},
         %name = {\S}
-    %}
-%}
-\CTEXsetup[format={\Large\flushleft}]{section}
-%\renewcommand{\chapter}[1]{
-    %\par
-    %\LARGE\bf\flushright #1
-    %\vspace{0.5cm}
-    %\hrule{2pt}
-%}
-%\CTEXsetup[beforeskip={0pt}, afterskip={1pt}]{section}
+    },
+    subsection={%
+        afterindent=true,
+        %beforeskip={16bp\@plus 1ex \@minus .2ex},
+        %afterskip={6bp \@plus .2ex},
+    },
+    subsubsection={%
+        afterindent=true,
+    },
+    %paragraph/afterindent=true,
+    %subparagraph/afterindent=true,
+}
 
-%\RequirePackage{xifthen}
+%\addtolength{\topmargin}{-54pt}
+%\setlength{\oddsidemargin}{-0.9cm}  % 3.17cm - 1 inch
+%\setlength{\evensidemargin}{\oddsidemargin}
+%\setlength{\textwidth}{17.00cm}
+%\setlength{\textheight}{24.00cm}    % 24.62
+
+\RequirePackage{xifthen}
 
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \cfoot{\thepage} 
 \pagenumbering{arabic}
 
-%\RequirePackage{amstext, amsmath}
-%\RequirePackage{booktabs}
+% ams-tex, 用来排出漂亮的公式
+\RequirePackage{amstext, amsmath, amssymb, amsfonts}
+\RequirePackage{mathrsfs}
+\RequirePackage{bm}
+\RequirePackage{mathtools}
+\RequirePackage[defaultsups]{newtxtext}
+\RequirePackage{courier}
+
+% 图形支持宏包
+\RequirePackage{graphicx}
+\RequirePackage[labelformat=simple]{subcaption}
+
 %\RequirePackage[options]{package}[date]
-%\RequirePackage{graphicx}
+
+% 表格控制
+\RequirePackage{longtable, makecell, tabu, booktabs}
+
+% 参考文献引用宏包
+\RequirePackage[numbers, sort&compress]{natbib}
 
 %------------------ 目录中的超链接(pdf 文档) ----------------------
 \RequirePackage[unicode=true, pdfusetitle,
@@ -135,7 +163,7 @@
         \clearpage
         \thispagestyle{empty}
         \begin{center}
-            {\LARGE 评语}
+            {\LARGE 评\quad 语}
         \end{center}
         \vskip 1.5ex
         % 评语表
@@ -172,6 +200,69 @@
 }
 \makeatother 
 
+% 页眉与页脚定义
+% \LaTeX{}已经预定义了几种页面风格, e.g. empty, plain, headings, myheadings
+% 在这里可以使用宏包 fancyhdr 来修改这些页面风格
+
+% 首页页眉与页脚定义, 因为首页一般采用 plain 风格, 所以可以直接修改 plain 风格
+\fancypagestyle{plain}{%
+    \fancyhf{} % 清除所有页眉页脚
+    \renewcommand{\headrulewidth}{0pt}
+    \cfoot{\thepage}
+}
+%------ 重新定义 frontmatter, mainmatter, backmatter
+\renewcommand{\frontmatter}{%
+    \clearpage
+    \pagestyle{plain}
+    %\setcounter{page}{1} % 这条命令没有必要, 因为pagenumbering命令会自动将页码重新设置为1
+    \pagenumbering{roman}
+    %\setcounter{chapter}
+    }
+\renewcommand{\mainmatter}{%
+    \clearpage
+    \setcounter{chapter}{0}
+    \pagenumbering{arabic}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \rhead{\small \rightmark}
+    \lhead{\small 中国地质大学(武汉)研究生课程论文}
+    \cfoot{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    }
+\renewcommand{\appendix}{%
+    \clearpage
+    \setcounter{chapter}{0}
+    \renewcommand\thechapter{\Alph{chapter}}
+    %arabic 阿拉伯数字
+    %roman 小写的罗马数字
+    %Roman 大写的罗马数字
+    %alph 小写字母
+    %Alph 大写字母
+    }
+\renewcommand{\backmatter}{%
+    }
+
+\newtoks\cugabstract
+\newtoks\cugkeywords 
+\newcommand{\AppChapter}[2]{%
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\bf #1}
+    %\addcontentsline{toe}{chapter}{\bf #2}
+    \chapter*{#1}
+    }
+
+\newcommand{\makeabstract}{%
+    \clearpage 
+    \AppChapter{摘\quad 要}{Abstract (in Chinese)}
+    \setcounter{page}{1}
+    {\normalsize
+    \the\cugabstract 
+    }
+    \vspace{1ex}
+    
+    \noindent
+    {\small {\bf 关键词:}\hskip0.5em \the\cugkeywords}
+}
 %--------------- Section Style -------------
 %\renewcommand{\section}{%
 %
