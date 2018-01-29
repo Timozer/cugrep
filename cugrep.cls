@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{cugrep}[2018/01/21 v0.3 report class]
+\ProvidesClass{cugrep}[2018/01/29 v0.4 report class]
 
 % \DeclareOption{options}{code}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
@@ -71,6 +71,9 @@
     },
     %paragraph/afterindent=true,
     %subparagraph/afterindent=true,
+    appendix/numbering = true,
+    appendix/name = {附录\ }, % {前, 后}
+    appendix/number = {\Alph{chapter}},
 }
 
 %\addtolength{\topmargin}{-54pt}
@@ -131,7 +134,6 @@
 \newtoks\college        % 学院
 \newtoks\class          % 学生类别: A: 博士, B: 硕士, C: 进修生
 
-\makeatletter 
 %--------------- Title Page ----------------
 \renewcommand{\maketitle}{
     \begin{titlepage}
@@ -149,7 +151,7 @@
                         \makebox[5em][s]{教\hfill 师\hfill 姓\hfill 名:} & \makebox[8em][s]{\the\teacher \hfill{}} & \\
                         \makebox[5em][s]{学\hfill 生\hfill 姓\hfill 名:} & \makebox[8em][s]{{\@author}\hfill{}} & \\
                         \makebox[5em][s]{学\hfill 号:} & \makebox[8em][s]{\the\sno \hfill{}} & \\
-                        \makebox[5em][s]{所\hfill 在\hfill 院\hfill 系:} & \makebox[8em][s]{ {}\the\college \hfill{}} & \\ 
+                        \makebox[5em][s]{所\hfill 在\hfill 院\hfill 系:} & \makebox[8em][s]{\the\college \hfill{}} & \\ 
                         \makebox[5em][s]{专\hfill 业:} & \makebox[8em][s]{\the\major \hfill{}} & \\
                         \makebox[5em][s]{类\hfill 别:} & \makebox[8em][s]{\the\class \hfill{}} & \\
                     \end{tabular}
@@ -198,7 +200,6 @@
         \clearpage
     \end{titlepage}
 }
-\makeatother 
 
 % 页眉与页脚定义
 % \LaTeX{}已经预定义了几种页面风格, e.g. empty, plain, headings, myheadings
@@ -210,6 +211,22 @@
     \renewcommand{\headrulewidth}{0pt}
     \cfoot{\thepage}
 }
+
+%\newcommand\frontmatter{%
+    %\cleardoublepage
+    %\@mainmatterfalse
+    %\pagenumbering{roman}}
+%\newcommand\mainmatter{%
+    %\cleardoublepage
+    %\@mainmattertrue
+    %\pagenumbering{arabic}}
+%\newcommand\backmatter{%
+    %\if@openright
+      %\cleardoublepage
+    %\else
+      %\clearpage
+    %\fi
+    %\@mainmatterfalse}
 %------ 重新定义 frontmatter, mainmatter, backmatter
 \renewcommand{\frontmatter}{%
     \clearpage
@@ -229,18 +246,24 @@
     \cfoot{\thepage}
     \renewcommand{\headrulewidth}{0.4pt}
     }
-\renewcommand{\appendix}{%
-    \clearpage
+\let\cugappendix = \appendix
+\renewcommand{\appendix}{
     \setcounter{chapter}{0}
-    \renewcommand\thechapter{\Alph{chapter}}
-    %arabic 阿拉伯数字
-    %roman 小写的罗马数字
-    %Roman 大写的罗马数字
-    %alph 小写字母
-    %Alph 大写字母
-    }
-\renewcommand{\backmatter}{%
-    }
+    \cugappendix 
+    \@mainmattertrue
+}
+%\renewcommand{\appendix}{%
+    %\clearpage
+    %\setcounter{chapter}{0}
+    %\renewcommand\thechapter{\Alph{chapter}}
+    %%arabic 阿拉伯数字
+    %%roman 小写的罗马数字
+    %%Roman 大写的罗马数字
+    %%alph 小写字母
+    %%Alph 大写字母
+    %}
+%\renewcommand{\backmatter}{%
+    %}
 
 \newtoks\cugabstract
 \newtoks\cugkeywords 

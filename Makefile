@@ -4,7 +4,8 @@ OPEN = open
 OBJECTS = demo.pdf
 target: $(OBJECTS)
 
-demo.pdf: *.tex *.sty *.cls
+demo.pdf: *.tex *.sty *.cls 
+	$(TEX) $<
 	$(TEX) $<
 	$(OPEN) $@
 

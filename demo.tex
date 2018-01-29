@@ -73,6 +73,26 @@ ctexbook 文档类, 所以没有摘要这一环境, 暂时添加了摘要环境.
 面的格式为 \verb|empty|, 把后面的设置冲掉了. 现在更改为 \verb|plain| 格式. 新的问题又来了, 首
 页页眉会显示一条横线, 看着不舒服, 去掉吧. 
 
+ctex 本身对 appendix 的设置就很不错了, 所以我这里就不对其重新定义了, 删除了原来对 \verb|\appendix|
+的重定义. 
+
+看了好多大学的论文模板, 发现附录一般都是放在最后的, 而参考文献, 致谢这些在附录的前面. 这就产生了一个问题.
+在写文档的时候, 我们用 \verb|\appendix| 命令来重置 chapter 计数, 并使用字母来表示章号, 而使用 \verb|\backmatter| 
+来关闭 chapter 计数, 从而使 \verb|\chapter| 命令产生的章标题(参考文献, 致谢等) 不包含章号. 这样无形中
+的一个顺序使得结果和自己所想甚远. \verb|\backmatter| 命令关闭 chapter 计数, \verb|\appendix| 是不会打开的.
+所以这里要重新定义 \verb|\appendix|, 使得它会打开 chapter 计数. 
+
+0.4 版本开发搞一段落. 回顾一下该版本实现的功能:
+
+\begin{itemize}
+    \item 添加了摘要命令 \verb|\makeabstract|, 使得可以方便生成摘要;
+    \item 定义了报告的写作顺序, \verb|\frontmatter, \mainmatter, \backmatter, \appendix|, 严格按照这个顺序来定义
+        报告的结构, 如果不按此来写, 很有可能不是你想要的结果;
+    \item 重定义了 \verb|\frontmatter, \mainmatter, \appendix| 等命令.
+\end{itemize}
+\backmatter
+\chapter{参考文献}
+\chapter{致谢}
 \appendix
 \chapter{测试附录}
 这里是附录, 看看是否会显示正常.
