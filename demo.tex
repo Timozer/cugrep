@@ -11,7 +11,6 @@
 \begin{document}
 
 \maketitle
-%\pagenumbering{roman}
 \frontmatter
 \cugabstract{
      这是中国地质大学(武汉)研究生课程论文的\LaTeX{}模板的说明文档. 主要对模板进行了介绍, 安装, 使用等方面的说明, 此外还对模板的实现细节进行了一定的说明. 版本历史可以查看到每个版本实现了哪些功能.
@@ -19,13 +18,21 @@
 \cugkeywords{\TeX{}, \LaTeX{}, 模板, 报告}
 \makeabstract 
 \tableofcontents
-%\thispagestyle{plain}
 \clearpage
 \mainmatter
-%\pagenumbering{arabic}
 
 \chapter{介绍}
+这份中国地质大学(武汉)研究生课程论文的 \LaTeX{} 模板是我根据中国地大学(武汉)研究生课程论文的 {\sc WORD} 版来编写的. 
+值得一提的是, 在 {\sc Word} 版中只定义了封面的内容和下一页的评语表, 对其他格式并没有明确的要求, 因此, 
+在这份 \LaTeX{} 模板中有关其他方面的格式都是没有参照标准的, 一切以我的审美为标准 :)~.
 
+\section{这是中文小节测试}
+{
+\noindent
+{\textbf{English Bold}}\\
+{\bf English Bold Fonts test} \\
+{\textit{English Italic Fonts test}}\\
+{\sc EnglishSmallCapsFontsTest}}
 
 \chapter{安装}
 
@@ -90,6 +97,58 @@ ctex 本身对 appendix 的设置就很不错了, 所以我这里就不对其重
         报告的结构, 如果不按此来写, 很有可能不是你想要的结果;
     \item 重定义了 \verb|\frontmatter, \mainmatter, \appendix| 等命令.
 \end{itemize}
+
+\section{Version 0.5}
+
+2018年 1月30日 星期二 17时07分04秒 CST
+
+今天正式开始开发 0.5 版本.
+
+昨天在推送 0.4 版本后发现了一个问题, 字体配置有问题. 0.4 版本及之前的版本中, 字体配置是我
+自己在网上下载的字体, 而且也并没有将其安装到系统中, 只是将其放到了一个文件夹中, 然后使用
+fontspec 宏包中的 \verb|\defaultfontfeature| 命令指定其路径. 这就造成了只能使用该路径下的
+字体的问题. 关于如何添加多个路径以及把 \LaTeX{} 默认搜索路径添加进来的操作, 我不会. 谷歌了
+很久都没有查到, 所以就放弃了, 如果你们谁知道如何解决这个问题, 烦请联系我, 不胜感激. 
+
+在放弃了那个方法后, 我就使用了 \LaTeX{} 的默认搜索路径, 并且把自己要使用的字体安装到系统中.
+这样, 我就可以在 \LaTeX{} 中使用了. 
+
+这个问题解决后, 突然发现又有新问题出现了 (程序开发中解决一个 BUG 又产生了一堆新的 BUG 的即
+视感有木有 \verb|>_<| ). 那就是英文字体中的加粗, 斜体, 小型大写字母命令不起作用了, 无衬线和等宽字体
+的命令还能骑作用, 不是太清楚什么问题, 在寻找中.
+
+关于这个问题, 我也是谷歌了很久的, 烦. 资料出奇的少.
+
+最终找到一个类似的问题, 他的解决方案是去掉了一个宏包, 然后就可以了. 我首先被这个人的想法
+惊到了, 突然想起以前看过一篇文章, 讲得是一个不懂电脑的电脑维修人员维修电脑的方法, 他的修电脑
+方法和这个人类似, 也是将电脑的零件各种拔插, 本来的开不了机的电脑就可以开机了 (ps. 难道这种
+方法是计算机领域的一大特色\verb|^_^|).
+
+我决定采用他这种方法. 首先不加入任何宏包, 看这是不是 ctexbook 文档类本身的问题 (ps. 很明显是
+我想多了, 人家那么多大神在维护, 怎么可能出这种问题). 显然不是, 我又想会不会是我自己写的 
+timozer.sty 这个文件出了问题 (ps. 才疏学浅, 出问题在所难免). 在测试文档里引入了我的宏包, 
+测试通过, 并没有问题. 那么就是我引入的宏包之间的冲突了. 目前在排除中 \ldots .
+
+在我将以下这些宏包关闭后, 字体正常了.
+
+\begin{itemize}
+    \item \{amstext, amsmath, amssymb, amsfonts, mathrsfs, bm, mathtools, newtxtext, courier\}
+    \item \{graphicx, subcaption\}
+    \item \{longtable, makecell, tabu, booktabs\}
+    \item \{natbib\}
+    \item \{timozercode\}, 这个是我自己写的一个宏包, 用来方便输入代码的, 具体用法应该在该模板大体完善的时候会写.
+\end{itemize}
+
+
+接下来一组一组的去开启这些宏包, 使用排除法来找出产生冲突的宏包. 
+
+很幸运, 在我开启第一组的时候就发现那几个命令工作不正常了. 后面三组不用看了.
+
+使用二分法, 经过几次测试后, 发现是 newtxtext 的问题. 
+
+我又对该宏包进行了单独测试, 发现其和 ctexbook 文档类并不冲突, 奇哉怪哉. 难道
+是和我写的 timozerfont.sty 宏包有冲突? 经过测试, 确实是和该宏包冲突, 在没有
+找到解决方法之前, 我先把 newtxtext 宏包禁用了. 
 \backmatter
 \chapter{参考文献}
 \chapter{致谢}

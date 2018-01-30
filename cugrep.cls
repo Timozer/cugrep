@@ -73,7 +73,7 @@
     %subparagraph/afterindent=true,
     appendix/numbering = true,
     appendix/name = {附录\ }, % {前, 后}
-    appendix/number = {\Alph{chapter}},
+    appendix/number = {\sf \Alph{chapter}},
 }
 
 %\addtolength{\topmargin}{-54pt}
@@ -94,7 +94,7 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{bm}
 \RequirePackage{mathtools}
-\RequirePackage[defaultsups]{newtxtext}
+%\RequirePackage[defaultsups]{newtxtext}
 \RequirePackage{courier}
 
 % 图形支持宏包
@@ -118,11 +118,10 @@
 
 %------------------------------------------
 \RequirePackage{timozerfont}
-\RequirePackage{timozercode}
+%\RequirePackage{timozercode}
 
 %--------------- Page Layout ---------------
 %\RequirePackage[a4paper, top=1.55in, bottom=1.75in, left=1.75in, right=1.75in]{geometry}
-%\RequirePackage[a4paper]{geometry}
 %-------------------------封面制作---------------------------
 \RequirePackage{array} % 做封面的时候需要用到表格环境
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
@@ -165,7 +164,7 @@
         \clearpage
         \thispagestyle{empty}
         \begin{center}
-            {\LARGE 评\quad 语}
+            {\LARGE \bf 评\quad 语}
         \end{center}
         \vskip 1.5ex
         % 评语表

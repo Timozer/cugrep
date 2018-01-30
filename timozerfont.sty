@@ -16,38 +16,34 @@
 
 \RequirePackage{fontspec}
 \RequirePackage{xeCJK}
-%\RequirePackage{indentfirst}
-
 
 %------------- Fonts Settings -------------
-\defaultfontfeatures{Path = fonts/cn/, Mapping = tex-text}
+%\defaultfontfeatures{Path = fonts/cn/, Mapping = tex-text}
+\defaultfontfeatures{Mapping = tex-text}
 
 %------------- Fonts Define ---------------
 % if you want to use more fonts, please do it like blow
-% \newCJKfontfamily[family]\cmd{font.file}
-\newCJKfontfamily[CourierNew]\CNF{CourierNew.ttf}
+%\newCJKfontfamily[family]\cmd{font.file}
 \newCJKfontfamily[SmallCaps]\SCF{SmallCaps.otf}
-\newCJKfontfamily[TimesNewRoman]\TNRF{TimesNewRomanRegular.ttf}
-\newCJKfontfamily[TimesNewRomanBold]\TNRBF{TimesNewRomanBold.ttf}
-\newCJKfontfamily[TimesNewRomanItalic]\TNRIF{TimesNewRomanItalic.ttf}
-\newCJKfontfamily[HiraginoSansGB-W3]\dqhei{HiraginoSansGB-W3.ttf}
 
-%------------- Chinese Fonts  -------------
-\setCJKmainfont[
-    BoldFont=HiraginoSansGB-W6.ttf,
-    ItalicFont=HiraginoSansGB-W3.ttf,
-    SmallCapsFont=HiraginoSansGB-W3.ttf,
-    ]{fzss.ttf}    % 设置正文罗马族字体 \rmfamily \textrm
-\setCJKsansfont{HiraginoSansGB-W3.ttf}   % 设置正文无衬线族字体 \sffamily \textsf
-\setCJKmonofont{HiraginoSansGB-W3.ttf}  % 设置正文等宽字体 \ttfamily \texttt
+%%------------- Chinese Fonts  -------------
+\setCJKmainfont[ 
+        BoldFont = Hiragino Sans GB W6, ItalicFont = STKaiti
+    ]{FZShuSong-Z01S}
+\setCJKsansfont[
+    BoldFont = Hiragino Sans GB, 
+    ]{Hiragino Sans GB}
+\setCJKmonofont{FZShuSong-Z01S}
 
-%------------- English Fonts  -------------
+%%------------- English Fonts  -------------
 \setmainfont[
-    BoldFont=TimesNewRomanBold,
-    ItalicFont=TimesNewRomanItalic
-]{TimesNewRomanRegular}
-%\setsansfont[]{}
-%\setmonofont{CourierNew}
+    ItalicFont = {Times New Roman Italic},
+    BoldFont = {Times New Roman Bold},
+    SmallCapsFont={Fontin SmallCaps},
+    %SmallCapsFeatures={Letters=SmallCaps},
+]{Times New Roman}
+\setsansfont{Optima}
+\setmonofont{Monaco}
 
 \def\timozer@def@fontsize#1#2{%
     \expandafter\newcommand\csname #1\endcsname[1][1.3]{%

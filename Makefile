@@ -6,7 +6,6 @@ target: $(OBJECTS)
 
 demo.pdf: *.tex *.sty *.cls 
 	$(TEX) $<
-	$(TEX) $<
 	$(OPEN) $@
 
 
