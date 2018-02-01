@@ -5,7 +5,7 @@ OBJECTS = demo.pdf
 target: $(OBJECTS)
 
 demo.pdf: *.tex *.sty *.cls 
-	$(TEX) $<
+	$(TEX) -shell-escape $<
 	$(OPEN) $@
 
 

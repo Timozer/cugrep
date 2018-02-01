@@ -33,6 +33,35 @@
 {\bf English Bold Fonts test} \\
 {\textit{English Italic Fonts test}}\\
 {\sc EnglishSmallCapsFontsTest}}
+\section{这是代码测试}
+
+看看间距
+
+\begin{tcodeenv}{cpp代码}{code:cpp}
+    \begin{minted}[firstnumber=30]{cpp}
+    int sum(int _l, int _r)
+    {
+        return _l + _r;
+    }
+    \end{minted}
+\end{tcodeenv}
+
+看看间距
+\begin{minted}[firstnumber=10]{cpp}
+    /* $ a + b = c$ 
+        \LaTeX{}
+    */
+    int main(){
+        return 0;
+    }
+
+    int abs(int a)
+    {
+        return a;
+    }
+\end{minted}
+
+{\tt This is normal font size}, \tcodeinline{tex}{\LaTeX{}}
 
 \chapter{安装}
 
@@ -58,7 +87,7 @@ ctexbook 文档类, 所以没有摘要这一环境, 暂时添加了摘要环境.
 2018年 1月26日 星期五 21时50分38秒 CST
 
 我新定义了一个命令\verb|\makeabstract|, 像\verb|\maketitle|一样, 可以
-使用这个命令来生成摘要页面. 在使用之前, 你必须给变量\verb|\cugabstract, \cugabstract| 赋值. 也许我可以起更好听的名字:).
+使用这个命令来生成摘要页面. 在使用之前, 你必须给变量\verb|\cugabstract, \cugkeywords| 赋值. 也许我可以起更好听的名字:).
 
 2018年 1月28日 星期日 17时01分20秒 CST
 
@@ -126,7 +155,7 @@ fontspec 宏包中的 \verb|\defaultfontfeature| 命令指定其路径. 这就�
 
 我决定采用他这种方法. 首先不加入任何宏包, 看这是不是 ctexbook 文档类本身的问题 (ps. 很明显是
 我想多了, 人家那么多大神在维护, 怎么可能出这种问题). 显然不是, 我又想会不会是我自己写的 
-timozer.sty 这个文件出了问题 (ps. 才疏学浅, 出问题在所难免). 在测试文档里引入了我的宏包, 
+timozerfont.sty 这个文件出了问题 (ps. 才疏学浅, 出问题在所难免). 在测试文档里引入了我的宏包, 
 测试通过, 并没有问题. 那么就是我引入的宏包之间的冲突了. 目前在排除中 \ldots .
 
 在我将以下这些宏包关闭后, 字体正常了.
@@ -149,6 +178,21 @@ timozer.sty 这个文件出了问题 (ps. 才疏学浅, 出问题在所难免). 
 我又对该宏包进行了单独测试, 发现其和 ctexbook 文档类并不冲突, 奇哉怪哉. 难道
 是和我写的 timozerfont.sty 宏包有冲突? 经过测试, 确实是和该宏包冲突, 在没有
 找到解决方法之前, 我先把 newtxtext 宏包禁用了. 
+
+2018年 2月 1日 星期四 10时28分29秒 CST
+
+经过昨天的一番思想斗争以及查阅资料, 看宏包的说明文档, 我终于决定使用 minted 宏包来代替 lstlistings 宏包
+来实现代码插入.
+
+2018年 2月 1日 星期四 18时10分35秒 CST
+
+在为代码添加背景色的时候, 发现 color 宏包不能正常使用, 换成了 xcolor 宏包. 
+
+今天实现了行内代码命令的定义, 提供了一个代码浮动体环境,
+并且对代码环境的外观进行了设置. 基本任务完成, 如果有空,
+我会考虑添加从文件中导入代码的功能.
+
+
 \backmatter
 \chapter{参考文献}
 \chapter{致谢}

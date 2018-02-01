@@ -118,7 +118,7 @@
 
 %------------------------------------------
 \RequirePackage{timozerfont}
-%\RequirePackage{timozercode}
+\RequirePackage{timozercode}
 
 %--------------- Page Layout ---------------
 %\RequirePackage[a4paper, top=1.55in, bottom=1.75in, left=1.75in, right=1.75in]{geometry}
