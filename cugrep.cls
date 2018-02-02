@@ -106,9 +106,8 @@
 % 表格控制
 \RequirePackage{longtable, makecell, tabu, booktabs}
 
-% 参考文献引用宏包
-\RequirePackage[numbers, sort&compress]{natbib}
-
+\RequirePackage{enumitem}
+\setlist{labelindent=\parindent, leftmargin=*}
 %------------------ 目录中的超链接(pdf 文档) ----------------------
 \RequirePackage[unicode=true, pdfusetitle,
     bookmarks=true, bookmarksnumbered=false,
@@ -298,5 +297,30 @@
 
 %\setcounter{secnumdepth}{0}
 
+\RequirePackage{xparse}
+
+% \RequirePackage{cleveref}
+% \cref{label, label, ...}
+% \crefrange{}{}
+% \cpageref{label, label, ...}
+% \cpagerefrange{label}{label}
+% maybe i can use cleveref package to solve the problem
+\AtBeginDocument{%
+\let\oldref\ref%
+\renewcommand{\ref}[1]{\hskip0.25em\oldref{#1}\hskip0.25em}
+%\RenewDocumentCommand \ref { m }{\hskip0.25em\oldref{#1}\hskip0.25em}
+}
+\NewDocumentEnvironment{tfig}{m m}{%
+    \begin{figure}[htbp]
+        \centering 
+    }{%
+        \caption{#1}
+        \label{#2}
+    \end{figure}
+}
+
+% tex 中定义命令的语句 \def, \gdef, \edef, \xdef, \gdef -> \global\def
+% \def<命令模板>{定义}
+% \def\Emph#1{\bf{#1}}
 %--------------- Source Code ---------------
 \endinput 

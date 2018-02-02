@@ -1,4 +1,6 @@
 \documentclass{cugrep}
+%\let\oldref\ref
+%\renewcommand{\ref}[1]{\hskip0.25em\oldref{#1}\hskip0.25em}
 
 \title{中国地质大学研究生课程论文\TeX{}模板}
 \classname{\TeX{}模板教程}
@@ -24,18 +26,29 @@
 
 \mainmatter
 \chapter{介绍}
-这份中国地质大学(武汉)研究生课程论文的 \LaTeX{} 模板是我根据中国地大学(武汉)研究生课程论文的 {\sc WORD} 版来编写的. 
+这份中国地质大学(武汉)研究生课程论文的 \LaTeX{} 模板是我根据中国地大学(武汉)研究生课程论文的 {\sc Word} 版来编写的. 
 值得一提的是, 在 {\sc Word} 版中只定义了封面的内容和下一页的评语表, 对其他格式并没有明确的要求, 因此, 
-在这份 \LaTeX{} 模板中有关其他方面的格式都是没有参照标准的, 一切以我的审美为标准 :)~.
+在这份 \LaTeX{} 模板中有关其他方面的格式都是没有参照标准的, 一切以我的审美为标准~:)~.
 
+在此之前我好像并没有看到有同学写过地大的 \TeX{} 课程论文模板. 因此, 在此斗胆献丑. 才疏学浅, 难免有许多错误和不足的
+地方, 还望各位能够指出, 我会真心承认错误并积极改进~\verb|^_^|~.
+
+本模板的编码参考了很多其他大学的 \TeX{} 论文模板, 在此表示感谢. 目前仍然在开发中, 虽然用其写一个文档已经不成
+问题了, 但是还缺乏各种各样的让人用起来很舒服的功能. 因此, 希望有 ``牛人'' 可以添加新功能或是对本模板进行改进和除错.
+
+本模板旨在推广 \TeX{} 这一优秀排版软件在地大的应用, 为广大同学提供一个方便, 美观的课程报告模板, 减少在写报告时候的
+各种各样格式方面的麻烦. 
+
+\section{\TeX{} logos 测试}
 \TeX{}, \LaTeX{}, \LaTeXe{}, \XeTeX{}, \XeLaTeX{}, \LuaTeX{}, \LuaLaTeX{}, \MF{}, \MP{}, \BIBTEX, \AMSTEX
-\section{这是中文小节测试}
+
+\section{英文字体测试}
 {
 \noindent
-{\textbf{English Bold}}\\
 {\bf English Bold Fonts test} \\
 {\textit{English Italic Fonts test}}\\
 {\sc EnglishSmallCapsFontsTest}}
+
 \section{这是代码测试}
 
 看看间距
@@ -70,9 +83,32 @@
 
 这里是参考文献引用\cite{Zeiler2013}.
 
-\chapter{安装}
+\section{插图环境测试}
 
+\begin{tfig}{1.jpg}{fig:one}
+    \includegraphics[width=\linewidth]{./imgs/1.jpg}
+\end{tfig}
 \chapter{使用方法}
+\section{安装}
+本模板并不需要安装, 你可以在模板目录下写自己的报告文档, 也可以直接修改 demo.tex 文档 (当然这种方法不建议, 因为这个文档的内容在你以后需要的时候
+可以来查看) .
+
+以下对本模板中的文件做一个说明:
+\begin{description}
+    \item[cugrep.cls] 这是本模板的文档类, 在使用模板的时候需要在导言区引入, \tcodeinline{tex}{\documentclass{cugrep}} ;
+    \item[timozercode.sty] 这是为方便代码引入而写的一个 code 宏包, 主要用于代码和伪代码的插入;
+    \item[timozerfont.sty] 这个文件用于文档中的字体设置, 中英文字体分开设置, 并且提供了从初号到小五的字体大小命令;
+    \item[timozertexlogos.sty] 这是宏包主要引入了提供 \TeX{} logos 的宏包;
+    \item[timozerbib.sty] 对参考文献的格式做了一个设置;
+    \item[demo.tex] 本说明文档的 tex 源码文件;
+    \item[README.md] 本项目的说明文档;
+    \item[Makefile] make 程序使用的文件;
+    \item[LICENSE] 本项目的协议;
+    \item[pyglangs.txt] 代码支持的语言类型;
+    \item[pygstyles.txt] 代码高亮支持的风格. 
+\end{description}
+
+\section{建立自己的文档}
 
 \section{参考文献}
 
@@ -97,7 +133,7 @@
 我想我可能会把这些实现细节写成博客文章发出来, 不会再这里写了.
 
 如果我写了这些文章, 我会在这篇说明文档和 README.md 文档中更新状态的, 敬请关注.
-\chapter{版本历史}
+\chapter{版本开发记录日志}
 
 \section{Version 0.3}
 \label{sec:version_0_3}
@@ -248,6 +284,35 @@ minted 宏包 (之前是 lstlistings) 重新写了一个简化的宏包 timozerc
 最后就是将参考文献这个功能添加进来. 
 
 这就是 0.5 版本中实现的所有功能. 敬请期待下一版 :)~.
+
+\section{Version 0.6}
+\label{sec:version_0_6}
+
+2018年 2月 2日 星期五 21时01分41秒 CST
+
+我试图为这个模板提供一些新的环境命令来方便我们输入内容, 比如说插图环境, 我想定义一个新的环境将
+插图环境包进去, 然后提供两个参数, 用来做插图的标题和标签, 这个环境自动将标题和标签放在闭合环境
+命令前面 (close stuff or end part), 很可惜, 我们并不能这么做, 具体原因我查到了, 如代码\ref{code:envclosestuffparams}所示.
+
+\begin{tcodeenv}{为什么 newenvironment 的参数不能放在 close stuff 中}{code:envclosestuffparams}
+    \begin{minted}{tex}
+    \newenvironment{foo}[1]%
+    { ... open stuff ... }
+    { ... close stuff ... }
+
+    % is defined internally as
+    \def\foo#1{...}
+    \def\endfoo{...}
+    % the end part has been defined by no arguments
+    \newenvironment{foo}[1]%
+    {\def\fooNoI{#1} some code #1}
+    {some code \fooNoI}
+    \end{minted}
+\end{tcodeenv}
+
+通过使用 xparse 宏包, 解决了这个问题.
+
+重定义了 \tcodeinline{tex}{\ref{arg}} 命令.
 \backmatter
 % 这里是参考文献
 \tbib{cnn}
