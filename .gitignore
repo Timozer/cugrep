@@ -10,3 +10,5 @@ test
 _minted-demo
 *.pyg
 _minted-cache
+*bbl
+*blg

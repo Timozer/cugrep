@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{cugrep}[2018/01/29 v0.4 report class]
+\ProvidesClass{cugrep}[2018/02/02 v0.5 report class]
 
 % \DeclareOption{options}{code}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
@@ -119,6 +119,8 @@
 %------------------------------------------
 \RequirePackage{timozerfont}
 \RequirePackage{timozercode}
+\RequirePackage{timozertexlogos}
+\RequirePackage{timozerbib}
 
 %--------------- Page Layout ---------------
 %\RequirePackage[a4paper, top=1.55in, bottom=1.75in, left=1.75in, right=1.75in]{geometry}
@@ -273,6 +275,10 @@
     \chapter*{#1}
     }
 
+\newcommand{\tbib}[1]{%
+    \bibliography{#1}
+    \addcontentsline{toc}{chapter}{\bf 参考文献}
+    }
 \newcommand{\makeabstract}{%
     \clearpage 
     \AppChapter{摘\quad 要}{Abstract (in Chinese)}

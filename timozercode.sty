@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{timozercode}[2018/01/29 v0.4 Source Code Environment]
+\ProvidesPackage{timozercode}[2018/02/02 v0.4 Source Code Environment]
 \RequirePackage[newfloat=true, cachedir=./_minted-cache, langlinenos=true]{minted}
 % minted package options chapter, section, 
 \RequirePackage{xcolor}
@@ -70,6 +70,8 @@
     stepnumberfromfirst, 
     stepnumber=1, 
     numberblanklines,
+    breaklines,
+    breakanywhere,
 }
 
 % 在写文档时候用的一些选项: [options], firstline=, firstnumber=(auto|last|int), lastline=, highlightcolor=(color or name), highlightlines={1, 3-4}
@@ -78,7 +80,7 @@
 % \surroundwithmdframed{minted}
 
 % define shortcuts
-\setmintedinline{linenos=false, fontsize=\small, fontfamily=tt, bgcolor={}}
+\setmintedinline{breakanywhere, breaklines, linenos=false, fontsize=\small, fontfamily=tt, bgcolor={}}
 \newcommand{\tcodeinline}[2]{%
     \mintinline{#1}|#2|
 }
