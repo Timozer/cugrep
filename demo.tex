@@ -5,7 +5,7 @@
 \college{计算机学院}
 \major{计算机科学与技术}
 \sno{20131001333}
-\teacher{教师名字}
+\teacher{某某某}
 \class{硕士}
 \author{Timozer}
 \begin{document}
@@ -14,8 +14,9 @@
 
 \frontmatter
 \cugabstract{
-     这是中国地质大学(武汉)研究生课程论文的\LaTeX{}模板的说明文档. 主要对模板进行了介绍, 安装, 使用等方面的说明, 此外还写了模板开发过程
-     的日志, 可以通过它来了解每一版中实现了哪些功能.
+    这是中国地质大学(武汉)研究生课程论文的 \LaTeX{}模板的说明文档. 
+    主要对模板进行了介绍, 安装, 使用等方面的说明, 此外还写了模板开发
+    过程的日志, 可以通过它来了解每一版中实现了哪些功能.
  }
 \cugkeywords{\TeX{}, \LaTeX{}, 模板, 报告}
 \makeabstract 
@@ -25,80 +26,40 @@
 
 \mainmatter
 \chapter{介绍}
-这份中国地质大学(武汉)研究生课程论文的 \LaTeX{} 模板是我根据中国地大学(武汉)研究生课程论文的 {\sc Word} 版来编写的. 
-值得一提的是, 在 {\sc Word} 版中只定义了封面的内容和下一页的评语表, 对其他格式并没有明确的要求, 因此, 
-在这份 \LaTeX{} 模板中有关其他方面的格式都是没有参照标准的, 一切以我的审美为标准~:)~.
+这份中国地质大学(武汉)研究生课程论文的 \LaTeX{} 模板是我根据中国地大学(武汉)
+研究生课程论文的 {\sc Word} 版来编写的. 值得一提的是, 在 {\sc Word} 版中只
+定义了封面的内容和下一页的评语表, 对其他格式并没有明确的要求, 因此, 在这份 \LaTeX{} 
+模板中有关其他方面的格式都是没有参照标准的, 一切以我的审美为标准~:)~.
 
-在此之前我好像并没有看到有同学写过地大的 \TeX{} 课程论文模板. 因此, 在此斗胆献丑. 才疏学浅, 难免有许多错误和不足的
-地方, 还望各位能够指出, 我会真心承认错误并积极改进~\verb|^_^|~.
+在此之前我好像并没有看到有同学写过地大的 \TeX{} 课程论文模板. 因此, 在此斗胆献丑. 
+才疏学浅, 难免有许多纰漏, 还望各位能够指出, 我会真心承认错误并积极改进~\verb|^_^|~.
 
-本模板的编码参考了很多其他大学的 \TeX{} 论文模板, 在此表示感谢. 目前仍然在开发中, 虽然用其写一个文档已经不成
-问题了, 但是还缺乏各种各样的让人用起来很舒服的功能. 因此, 希望有 ``牛人'' 可以添加新功能或是对本模板进行除错.
+本模板的编码参考了很多其他大学的 \TeX{} 论文模板, 在此表示感谢. 目前仍然在开发中, 虽
+然用其写一个文档已经不成问题了, 但是还缺乏各种各样的让人用起来很舒服的功能. 因此, 希望
+有 ``牛人'' 可以添加新功能或是对本模板进行除错.
 
-本模板旨在推广 \TeX{} 这一优秀排版软件在地大的应用, 为广大同学提供一个方便, 美观的课程报告模板, 减少写报告时候的
-各种各样格式方面的麻烦. 
+本模板旨在推广 \TeX{} 这一优秀排版软件在地大的应用, 为广大同学提供一个方便, 美观的
+课程报告模板, 减少写报告时候因格式问题而带来的麻烦. 
 
 \section{\TeX{} logos 测试}
-\TeX{}, \LaTeX{}, \LaTeXe{}, \XeTeX{}, \XeLaTeX{}, \LuaTeX{}, \LuaLaTeX{}, \MF{}, \MP{}, \BIBTEX, \AMSTEX
+\TeX{}, \LaTeX{}, \LaTeXe{}, \XeTeX{}, \XeLaTeX{}, \LuaTeX{}, \LuaLaTeX{}, 
 
-\section{英文字体测试}
-{
-\noindent
-{\bf English Bold Fonts test} \\
-{\textit{English Italic Fonts test}}\\
-{\sc EnglishSmallCapsFontsTest}}
+\MF{}, \MP{}, \BIBTEX, \AMSTEX
 
-\section{这是代码测试}
-
-看看间距
-
-\begin{tcodeenv}{cpp代码}{code:cpp}
-    \begin{minted}[firstnumber=30]{cpp}
-    int sum(int _l, int _r)
-    {
-        return _l + _r;
-    }
-    \end{minted}
-\end{tcodeenv}
-
-看看间距
-\begin{minted}[firstnumber=10]{cpp}
-    /* $ a + b = c$ 
-        \LaTeX{}
-    */
-    int main(){
-        return 0;
-    }
-
-    int abs(int a)
-    {
-        return a;
-    }
-\end{minted}
-
-{\tt This is normal font size}, \tcodeinline{tex}{\LaTeX{}}
-
-\section{参考文献测试}
-
-这里是参考文献引用\cite{Zeiler2013}.
-
-\section{插图环境测试}
-
-\begin{tfig}{1.jpg}{fig:one}
-    \includegraphics[width=\linewidth]{./imgs/1.jpg}
-\end{tfig}
 \chapter{使用方法}
 \section{安装}
-本模板并不需要安装, 你可以在模板目录下写自己的报告文档, 也可以直接修改 demo.tex 文档 (当然这种方法不建议, 因为这个文档的内容在你以后需要的时候
-可以来查看) .
+本模板并不需要安装, 你可以在模板目录下写自己的报告文档, 也可以直接修改 demo.tex 文档 
+(当然我肯定不建议你这样做, 因为这个文档的内容可以在你以后需要的时候回来查看. 呸, 其实
+主要是因为这个文档是我写得啦, 尊重一下我好吧).
 
-以下对本模板中的文件做一个说明:
+以下对本模板中的文件做一个说明: % 这里需要用表格重写做一下
 \begin{description}
     \item[cugrep.cls] 这是本模板的文档类, 在使用模板的时候需要在导言区引入, \tcodeinline{tex}{\documentclass{cugrep}} ;
     \item[timozercode.sty] 这是为方便代码引入而写的一个 code 宏包, 主要用于代码和伪代码的插入;
     \item[timozerfont.sty] 这个文件用于文档中的字体设置, 中英文字体分开设置, 并且提供了从初号到小五的字体大小命令;
     \item[timozertexlogos.sty] 这是宏包主要引入了提供 \TeX{} logos 的宏包;
     \item[timozerbib.sty] 对参考文献的格式做了一个设置;
+    \item[timozerdirtree.sty] 目录树;
     \item[demo.tex] 本说明文档的 tex 源码文件;
     \item[README.md] 本项目的说明文档;
     \item[Makefile] make 程序使用的文件;
@@ -109,9 +70,119 @@
 
 \section{建立自己的文档}
 
+在开始写你的文档之前, 你的目录应该是这个样子:
+
+\begin{forest}
+    pic dir tree,
+    pic root,
+    for tree={%
+        dir,
+    },
+    [{/.} 
+        [cugrep.cls, file] 
+        [demo.pdf, file] 
+        [demo.tex, file] 
+        [LICENSE, file] 
+        [Makefile, file]
+        [pyglangs.txt, file] 
+        [pygstyles.txt, file] 
+        [README.md, file] 
+        [timozerbib.sty, file] 
+        [timozercode.sty, file] 
+        [timozerdirtree.sty, file]
+        [timozerfont.sty, file]
+        [timozertexlogos.sty, file]
+    ]
+\end{forest}
+
+接下来新建一个 \texttt{tex} 文档, 假如是 \texttt{rep.tex}. 当然你可以直接修改
+\texttt{demo.tex} 文件, 将自己内容添加进去. 但是我不建议你这样做.
+
+\section{添加封面信息}
+我提供的模板是一个文档类, 不仅仅是一个宏包. 因此, 在你的报告开头应该引入模板类, 向下面这样:
+\begin{minted}{tex}
+    \documentclass{cugrep}
+\end{minted}
+
+请注意, 目前这个版本中不需要提供任何参数.
+
+接下来需要你为报告提供一些基本信息, 比如说课程报告的标题, 该课程的名字,
+你所在的学院以及专业, 还有你的学号, 老师的名字, 你的类别 (本科生, 硕士,
+博士, 还是进修生等), 你的名字.
+
+像本文档这样:
+\begin{minted}[firstnumber=3]{tex}
+    \title{中国地质大学研究生课程论文\TeX{}模板}
+    \classname{\TeX{}模板教程}
+    \college{计算机学院}
+    \major{计算机科学与技术}
+    \sno{20131001333}
+    \teacher{某某某}
+    \class{硕士}
+    \author{Timozer}
+\end{minted}
+
+然后通过 \tcodeinline{tex}{\maketitle} 命令来制作封面以及评语表. 
+
+\section{文档结构}
+
+每一篇报告的格式基本都是类似的. 前面的是封面和评语表, 接着就是摘要, 紧接着
+是各种目录等. 而摘要和目录等在 \TeX{} 里面称之为 \texttt{frontmatter}. 
+
+摘要和目录之后就是正文了, 也就是 \texttt{mainmatter}.
+
+我看了一些论文的模板, 大都是将附录放在了致谢和参考文献等的后面. 因此, 在正文
+之后, 我们需要没有章节号的致谢和参考文献. 这属于 \texttt{backmatter}.
+
+如果你想添加附录, 那么以 \texttt{appendix} 开始, 开启章节号, 然后添加附录章节.
+
+因此, 最后你的文档结构是这样子的:
+\begin{minted}{tex}
+    \begin{docuemnt}
+        \maketitle
+
+        \frontmatter
+        \makeabstract
+        \tableofcontents
+        \clearpage
+
+        \mainmatter
+        \chapter{正文章节}
+
+        \backmatter
+        \chapter{致谢}
+
+        \appendix
+        \chapter{附录}
+    \end{document}
+\end{minted}
+
+请注意 \texttt{frontmatter, mainmatter, backmatter, appendix} 等的顺序, 不要
+随意使用, 否则, 可能得不到你想要的结果. 关于具体的含义, 有空再写.
+
+\section{生成文档}
+当你写完你的文档的时候, 你就可以通过 \texttt{xelatex} 程序来编译生成 pdf 文档了.
+
+如果你有 \texttt{make} 等工具的使用知识, 可以修改 \texttt{Makefile} 文件来简化
+输入命令.
+
+如果你不熟悉的话, 可以直接使用命令 \tcodeinline{sh}{$xelatex rep.tex} 来编译, 
+当然, 这是在你没有添加参考文献的时候, 这样就能得到你的文档了. 如果你引用了参考
+文献, 还需要 \texttt{bibtex} 来编译生成的 \texttt{aux} 文件, 比如这样:
+\tcodeinline{sh}{$bibtex rep.aux}, 然后你还需要执行两次 
+\tcodeinline{sh}{$xelatex rep.tex}.
+
+整个的执行过程如下:
+\begin{minted}{sh}
+    $ xelatex rep.tex
+    $ bibtex rep.aux
+    $ xelatex rep.tex
+    $ xelatex rep.tex
+\end{minted}
+
 \section{参考文献}
 
-文献类型:
+文献类型: % 换成表格更好一点儿
 \begin{itemize}
     \item article\quad{} \{author, title, journal, year\}, \{volume, number, pages, month, note\}
     \item book\quad{} \{author/editor, title, publisher, year\}, \{volume/number, series, address, edition, month, note\}
@@ -136,7 +207,7 @@
 
 \section{Version 0.3}
 \label{sec:version_0_3}
-因为想不起版本0.1--0.2做了哪些功能, 所以在此就不介绍了.
+因为想不起版本0.1--~0.2做了哪些功能, 所以在此就不介绍了.
 
 这个版本主要是实现了中国地质大学(武汉)研究生课程论文 Word 模板中的封面和后面的评语表.
 \section{Version 0.4}
@@ -150,7 +221,8 @@ ctexbook 文档类, 所以没有摘要这一环境, 暂时添加了摘要环境.
 2018年 1月26日 星期五 21时50分38秒 CST
 
 我新定义了一个命令\tcodeinline{tex}{\makeabstract}, 像\tcodeinline{tex}{\maketitle}一样, 可以
-使用这个命令来生成摘要页面. 在使用之前, 你必须给变量\tcodeinline{tex}{\cugabstract, \cugkeywords} 赋值. 也许我可以起更好听的名字:).
+使用这个命令来生成摘要页面. 在使用之前, 你必须给变量\tcodeinline{tex}{\cugabstract, \cugkeywords} 
+赋值. 也许我可以起更好听的名字:).
 
 2018年 1月28日 星期日 17时01分20秒 CST
 
@@ -176,9 +248,10 @@ ctex 本身对 appendix 的设置就很不错了, 所以我这里就不对其重
 的重定义. 
 
 看了好多大学的论文模板, 发现附录一般都是放在最后的, 而参考文献, 致谢这些在附录的前面. 这就产生了一个问题.
-在写文档的时候, 我们用 \tcodeinline{tex}{\appendix} 命令来重置 chapter 计数, 并使用字母来表示章号, 而使用 \tcodeinline{tex}{\backmatter} 
-来关闭 chapter 计数, 从而使 \tcodeinline{tex}{\chapter} 命令产生的章标题(参考文献, 致谢等) 不包含章号. 这样无形中
-的一个顺序使得结果和自己所想甚远. \tcodeinline{tex}{\backmatter} 命令关闭 chapter 计数, \tcodeinline{tex}{\appendix} 是不会打开的.
+在写文档的时候, 我们用 \tcodeinline{tex}{\appendix} 命令来重置 chapter 计数, 并使用字母来表示章号, 而使用
+ \tcodeinline{tex}{\backmatter} 来关闭 chapter 计数, 从而使 \tcodeinline{tex}{\chapter} 命令
+ 产生的章标题(参考文献, 致谢等) 不包含章号. 这样无形中的一个顺序使得结果和自己所想甚远. 
+ \tcodeinline{tex}{\backmatter} 命令关闭 chapter 计数, \tcodeinline{tex}{\appendix} 是不会打开的.
 所以这里要重新定义 \tcodeinline{tex}{\appendix}, 使得它会打开 chapter 计数. 
 
 0.4 版本开发搞一段落. 回顾一下该版本实现的功能:
@@ -282,7 +355,7 @@ minted 宏包 (之前是 lstlistings) 重新写了一个简化的宏包 timozerc
 
 最后就是将参考文献这个功能添加进来. 
 
-这就是 0.5 版本中实现的所有功能. 敬请期待下一版 :)~.
+这就是 0.5 版本中实现的所有功能. 敬请期待下一版~:)~.
 
 \section{Version 0.6}
 \label{sec:version_0_6}
@@ -312,9 +385,34 @@ minted 宏包 (之前是 lstlistings) 重新写了一个简化的宏包 timozerc
 通过使用 xparse 宏包, 解决了这个问题.
 
 重定义了 \tcodeinline{tex}{\ref{arg}} 命令.
-\backmatter
+
+2018年 2月 3日 星期六 14时07分28秒 CST
+
+提供了一个新的环境 tdirtree, 可以用来做目录树. 在 timozerdirtree 宏包里.
+
+今天略写了一下说明文档, 将基本的东西写了一下. 目前的状况自己还算满意, 但是自己清楚还有
+很多事情没做. 最近烦了, 暂时不想开发了, 原本的打算在该版本中加入的伪代码功能也没有去做,
+因此 0.6 版本开发到此结束. 下一个版本什么时候开发, 我也不知道, 应该是等我有空想起来这个事情吧.
+
+说明文档目前也暂时写到这儿了, 我想会在以后的版本开发过程中逐步完善说明文档. 你如果想用
+这个模板, 却不知道该怎么用, 可以来问我, 当然如果你的 \TeX{} 基础知识过关的话, 可以自己
+查看我写的代码来获得相应的用法.
+
+我的联系方式:
+
+E-mail: zhenyuwang94@gmail.com
+
+QQ: 878592748
+
+不管用何种方式联系我, 请在邮件标题或者是 QQ 验证信息里加入 ``CUGTeX模板问题'' 的字样.
+
+\section{Version 0.7}
+2018年 2月 3日 星期六 17时44分02秒 CST
+
+暂停开发.
+\backmatter{}
 % 这里是参考文献
-\tbib{cnn}
+%\tbib{bibFileName}
 
 \chapter{致谢}
 

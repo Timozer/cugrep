@@ -120,6 +120,7 @@
 \RequirePackage{timozercode}
 \RequirePackage{timozertexlogos}
 \RequirePackage{timozerbib}
+\RequirePackage{timozerdirtree}
 
 %--------------- Page Layout ---------------
 %\RequirePackage[a4paper, top=1.55in, bottom=1.75in, left=1.75in, right=1.75in]{geometry}
@@ -322,5 +323,6 @@
 % tex 中定义命令的语句 \def, \gdef, \edef, \xdef, \gdef -> \global\def
 % \def<命令模板>{定义}
 % \def\Emph#1{\bf{#1}}
+% 排版文件目录树的宏包: dirtree, forest
 %--------------- Source Code ---------------
 \endinput 

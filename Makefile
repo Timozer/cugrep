@@ -7,8 +7,8 @@ target: $(OBJECTS)
 
 demo.pdf: *.tex *.sty *.cls 
 	$(TEX) -shell-escape $<
-	$(BIBTEX) demo.aux
-	$(TEX) -shell-escape $<
+	#$(BIBTEX) demo.aux
+	#$(TEX) -shell-escape $<
 	$(TEX) -shell-escape $<
 	$(OPEN) $@
 
@@ -16,5 +16,5 @@ demo.pdf: *.tex *.sty *.cls
 .PHONY: clean 
 
 clean:
-	rm -f *~ *.aux *.log *.out *.toc *.pdf *.bbl *.blg
+	rm -f *~ *.aux *.log *.out *.toc *.bbl *.blg
 	rm -rf _minted-cache
