@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{cugrep}[2018/02/02 v0.5 report class]
+\ProvidesClass{cugrep}[2018/02/03 v0.6 report class]
 
 % \DeclareOption{options}{code}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
