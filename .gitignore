@@ -13,3 +13,5 @@ _minted-cache
 *bbl
 *blg
 imgs
+*.lof
+*.lot

@@ -72,7 +72,7 @@
     %paragraph/afterindent=true,
     %subparagraph/afterindent=true,
     appendix/numbering = true,
-    appendix/name = {附录\ }, % {前, 后}
+    appendix/name = {附录~}, % {前, 后}
     appendix/number = {\sf \Alph{chapter}},
 }
 
@@ -253,18 +253,13 @@
     \cugappendix 
     \@mainmattertrue
 }
-%\renewcommand{\appendix}{%
-    %\clearpage
-    %\setcounter{chapter}{0}
-    %\renewcommand\thechapter{\Alph{chapter}}
-    %%arabic 阿拉伯数字
-    %%roman 小写的罗马数字
-    %%Roman 大写的罗马数字
-    %%alph 小写字母
-    %%Alph 大写字母
-    %}
+%arabic 阿拉伯数字
+%roman 小写的罗马数字
+%Roman 大写的罗马数字
+%alph 小写字母
+%Alph 大写字母
 %\renewcommand{\backmatter}{%
-    %}
+%}
 
 \newtoks\cugabstract
 \newtoks\cugkeywords 
@@ -320,6 +315,9 @@
     \end{figure}
 }
 
+% \rmfamily, \sffamily, \ttfamily, \upshape, \itshape, \slshape, \scshape, \bfseries, \mdseries, \lfseries
+\NewDocumentCommand{\cugrep}{}{{\rmfamily \scshape \small CugRep}}
+\NewDocumentCommand{\ttword}{m}{{\small \ttfamily #1}}
 % tex 中定义命令的语句 \def, \gdef, \edef, \xdef, \gdef -> \global\def
 % \def<命令模板>{定义}
 % \def\Emph#1{\bf{#1}}

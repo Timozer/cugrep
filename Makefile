@@ -5,7 +5,7 @@ OPEN = open
 OBJECTS = demo.pdf
 target: $(OBJECTS)
 
-demo.pdf: *.tex *.sty *.cls 
+demo.pdf: demo.tex *.sty *.cls 
 	$(TEX) -shell-escape $<
 	#$(BIBTEX) demo.aux
 	#$(TEX) -shell-escape $<
@@ -16,5 +16,5 @@ demo.pdf: *.tex *.sty *.cls
 .PHONY: clean 
 
 clean:
-	rm -f *~ *.aux *.log *.out *.toc *.bbl *.blg
+	rm -f *~ *.aux *.log *.out *.toc *.bbl *.blg *.lof *.lot
 	rm -rf _minted-cache
